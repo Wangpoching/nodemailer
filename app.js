@@ -3,7 +3,6 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var path = require('path');
-var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 var emailRouter = require('./routes/email');
 var session = require('express-session');
@@ -24,7 +23,6 @@ app.use(session({     // Set up session middleware
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/email', emailRouter);
 

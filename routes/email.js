@@ -44,31 +44,4 @@ router.post('/user/send', (req, res) => {
   });
 });
 
-router.post('/server/send', async (req, res, next)=> {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASS,
-      },
-    });
-
-    const mailOptions = {
-      from: process.env.GMAIL_USER,
-      to: '你要發送的對象信箱',
-      subject: '這是信件的主旨',
-      text: '這是信件的內容',
-    };
-
-    transporter.sendMail(mailOptions, (err, info) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send('Error sending email');
-      } else {
-        console.log(info);
-        res.send('Email sent');
-      }
-    });
-});
-
 module.exports = router;
